@@ -5,7 +5,9 @@ image related [data mime types](https://developer.mozilla.org/en-US/docs/Web/HTT
 
 ##Compatibility
 &nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?)*
+
 &nbsp;&nbsp;&nbsp;&nbsp;Currently tested with Chrome and Firefox. A fallback mechanism exists in ie >10 which displays an alert and subsequently downloads an svg file instead.
+
 Unfortunately:
 
 ```
@@ -13,9 +15,10 @@ canvas.toDataURL(..
 ```
 
 method will invoke a security error in IE. However, this seems to be a verified bug in IE<=11 and is already reported to be fixed in [edge](https://connect.microsoft.com/IE/feedback/details/828416/cavas-todataurl-method-doesnt-work-after-draw-svg-file-to-canvas).
+
 &nbsp;&nbsp;&nbsp;&nbsp;For Safari, the a.download property and/or attribute does not exit, therefore the output is displayed in a new window.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Check that your pop-up blockers are __disabled__.
+&nbsp;&nbsp;&nbsp;&nbsp;For Safari, check that your pop-up blockers are __disabled__.
 
 ##Dependencies
 &nbsp;&nbsp;&nbsp;&nbsp;None.
