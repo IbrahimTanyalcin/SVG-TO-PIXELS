@@ -12,9 +12,10 @@ Unfortunately:
 canvas.toDataURL(..
 ```
 
-method will invoke a security error in ie. However, this seems to be a verified bug in ie<=11 and is already reported to be fixed in [edge](https://connect.microsoft.com/IE/feedback/details/828416/cavas-todataurl-method-doesnt-work-after-draw-svg-file-to-canvas).
+method will invoke a security error in IE. However, this seems to be a verified bug in IE<=11 and is already reported to be fixed in [edge](https://connect.microsoft.com/IE/feedback/details/828416/cavas-todataurl-method-doesnt-work-after-draw-svg-file-to-canvas).
 &nbsp;&nbsp;&nbsp;&nbsp;For Safari, the a.download property and/or attribute does not exit, therefore the output is displayed in a new window.
-Check that your pop-up blockers are __disabled__.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Check that your pop-up blockers are __disabled__.
 
 ##Dependencies
 &nbsp;&nbsp;&nbsp;&nbsp;None.
@@ -41,9 +42,10 @@ Check that your pop-up blockers are __disabled__.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Assume that we want to click on the *controller* and download a corresponding file in "png" format:
 
-```
-svgToPixels.hook(*container,target[,type[,fileName[,once[,filter]]]]*)
-```
+<pre>
+svgToPixels.hook(<i>container,target[,type[,fileName[,once[,filter]]]]</i>)
+</pre>
+
 * _container_ = This is your root SVG element. It can either be a node, or an id string as in "myId" or an id string with *#* as in "#myId".
 * _target_ = This is the *div/span...* tag that will be appended with an invisable a tag that will be removed and url-revoked once download is complete. Like above, it can be a node or an id string.
 * _type_ = Specify one of the valid image [mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Defaults to *"image/png"*.
