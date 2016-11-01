@@ -61,7 +61,7 @@ svgToPixels.hook(...).hook(...).hook(...)..
 
 ####__Examples__:
 	
-```
+
 <pre>
 <i>svgToPixels.hook("mySVG","myDIV","image/png","someFileName",false,false);</i>
 
@@ -77,7 +77,7 @@ svgToPixels.hook(svgNode,divNode,"image/jpeg","someFileName",true,"grayscale(100
 
 svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)");
 </pre>
-```
+
 
 ##Lisence
 &nbsp;&nbsp;&nbsp;&nbsp;Lisenced under [*ATTRIBUTION ASSURANCE LICENSE*](./Lisence.md)
