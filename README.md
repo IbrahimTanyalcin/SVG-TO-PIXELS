@@ -84,7 +84,7 @@ svgToPixels.hook(...).hook(...).hook(...)..
 
 
 ##Lisence
-&nbsp;&nbsp;&nbsp;&nbsp;Lisenced under [*ATTRIBUTION ASSURANCE LICENSE*](./Lisence.md)
+&nbsp;&nbsp;&nbsp;&nbsp;Lisenced under [*ATTRIBUTION ASSURANCE LICENSE*](./LISENCE.md)
 	
 ##Support
 &nbsp;&nbsp;&nbsp;&nbsp;For any related questions drop an email at:
