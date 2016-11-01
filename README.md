@@ -36,7 +36,9 @@ Check that your pop-up blockers are __disabled__.
 ###*__How to use__*
 
 &nbsp;&nbsp;&nbsp;&nbsp;For the below examples you can refer to a minimal example generated [__here__](example/svgToPng.html).
+
 &nbsp;&nbsp;&nbsp;&nbsp;Consider a root *SVG element* (*container*) and a *controller* element (*div or any other tag that is capable of having an link as a childElement*).
+
 &nbsp;&nbsp;&nbsp;&nbsp;Assume that we want to click on the *controller* and download a corresponding file in "png" format:
 
 ```
@@ -49,7 +51,7 @@ svgToPixels.hook(*container,target[,type[,fileName[,once[,filter]]]]*)
 ```
 "file."+(type.replace(/^.*\//,""))
 ```
-	+ where _type_ is the previously provided/default mime type.
+where _type_ is the previously provided/default mime type.
 * _once_ = Specify whether if you want the click callback to execute only once. Set to *false* by default.
 * _filter_ = Specify a valid *css filter*. The chosen filter will __not__ be applied on the original SVG. Set to *false* by default. (*Important:If you are an IE, the fallback SVG only method does __not__ allow usage of css filters as the only valid filters in SVGSVGElement are the ones declared in SVG namespace.*)
 	
@@ -65,17 +67,17 @@ svgToPixels.hook(...).hook(...).hook(...)..
 <pre>
 <i>svgToPixels.hook("mySVG","myDIV","image/png","someFileName",false,false);</i>
 
-svgToPixels.hook("#mySVG","#myDIV","image/png","someFileName",false,false);
+<i>svgToPixels.hook("#mySVG","#myDIV","image/png","someFileName",false,false);</i>
 
-svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);
+<i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);</i>
 
-svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);
+<i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);</i>
 
-svgToPixels.hook(svgNode,divNode,"image/png","someFileName",true,false);
+<i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",true,false);</i>
 
-svgToPixels.hook(svgNode,divNode,"image/jpeg","someFileName",true,"grayscale(100%)");
+<i>svgToPixels.hook(svgNode,divNode,"image/jpeg","someFileName",true,"grayscale(100%)");</i>
 
-svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)");
+<i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)");</i>
 </pre>
 
 
