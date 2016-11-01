@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style>
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="./svgToPixels.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var svg = d3.select(document.body).append("svg").attr("id","mySVG").attr("width",200).attr("height",200).style("width","200px").style("display","block").style("height","200px").style("margin",0).style("padding",0).style("position","relative").style("top","0px");
+svg.append("circle").attr("cx",0).attr("cy",0).attr("r",40).attr("fill","DodgerBlue").attr("transform","translate(50,50)");
+svg = svg.node();
+var div = d3.select(document.body).append("div").attr("id","myDIV").style("background-color","green").style("width","50px").style("height","50px").style("margin",0).style("padding",0).style("position","relative").style("top","0px");
+div = div.node();
+//svgToPixels.hook("mySVG","myDIV","image/png","some",false,false);
+//svgToPixels.hook("#mySVG","#myDIV","image/png","some",false,false);
+//svgToPixels.hook(svg,div,"image/png","some",false,false);
+//svgToPixels.hook(svg,div,"image/png","some",false,false);
+//svgToPixels.hook(svg,div,"image/png","some",true,false);
+//svgToPixels.hook(svg,div,"image/png","some",true,"grayscale(100%)");
+svgToPixels.hook(svg,div,"image/png","some",false,"invert(100%)");
+</script>
+</body>
+</html>
