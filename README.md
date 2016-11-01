@@ -42,18 +42,18 @@ Check that your pop-up blockers are __disabled__.
 ```
 svgToPixels.hook(*container,target[,type[,fileName[,once[,filter]]]]*)
 ```
-	* _container_ = This is your root SVG element. It can either be a node, or an id string as in "myId" or an id string with *#* as in "#myId".
- 	* _target_ = This is the *div/span...* tag that will be appended with an invisable a tag that will be removed and url-revoked once download is complete. Like above, it can be a node or an id string.
-	* _type_ = Specify one of the valid image [mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Defaults to *"image/png"*.
-	* _file_ = Specify a file name in valid string. Passing an *undefined* will result in the file name:
-		```
-		"file."+(type.replace(/^.*\//,""))
-		```
-		where *type* is the previously provided/default mime type.
-	* _once_ = Specify whether if you want the click callback to execute only once. Set to *false* by default.
-	* _filter_ = Specify a valid *css filter*. The chosen filter will __not__ be applied on the original SVG. Set to *false* by default. (*Important:If you are an IE, the fallback SVG only method does __not__ allow usage of css filters as the only valid filters in SVGSVGElement are the ones declared in SVG namespace.*)
+* _container_ = This is your root SVG element. It can either be a node, or an id string as in "myId" or an id string with *#* as in "#myId".
+* _target_ = This is the *div/span...* tag that will be appended with an invisable a tag that will be removed and url-revoked once download is complete. Like above, it can be a node or an id string.
+* _type_ = Specify one of the valid image [mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Defaults to *"image/png"*.
+* _file_ = Specify a file name in valid string. Passing an *undefined* will result in the file name:
+```
+"file."+(type.replace(/^.*\//,""))
+```
++where *type* is the previously provided/default mime type.
+* _once_ = Specify whether if you want the click callback to execute only once. Set to *false* by default.
+* _filter_ = Specify a valid *css filter*. The chosen filter will __not__ be applied on the original SVG. Set to *false* by default. (*Important:If you are an IE, the fallback SVG only method does __not__ allow usage of css filters as the only valid filters in SVGSVGElement are the ones declared in SVG namespace.*)
 	
-	If you want to hook several listeners on different elements at once you can use:
+&nbsp;&nbsp;&nbsp;&nbsp;If you want to hook several listeners on different elements at once you can use:
 	
 ```
 svgToPixels.hook(...).hook(...).hook(...)..
@@ -63,12 +63,19 @@ svgToPixels.hook(...).hook(...).hook(...)..
 	
 ```
 svgToPixels.hook("mySVG","myDIV","image/png","someFileName",false,false);
+
 svgToPixels.hook("#mySVG","#myDIV","image/png","someFileName",false,false);
+
 svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);
+
 svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false);
+
 svgToPixels.hook(svgNode,divNode,"image/png","someFileName",true,false);
+
 svgToPixels.hook(svgNode,divNode,"image/jpeg","someFileName",true,"grayscale(100%)");
+
 svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)");
+
 ```
 
 ##Lisence
@@ -76,5 +83,5 @@ svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)"
 	
 ##Support
 &nbsp;&nbsp;&nbsp;&nbsp;For any related questions drop an email at:
-	* _ibrahim.tanyalcin@i-pv.org_
+&nbsp;&nbsp;&nbsp;&nbsp;* _ibrahim.tanyalcin@i-pv.org_
 	
