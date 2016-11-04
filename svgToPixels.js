@@ -1,15 +1,19 @@
 !function () {
 	function svgToPixels() {
-		this.hook = function(container,target,type,fileName,once,filter) {
+		var _this_ = this;
+		this.hook = function(container,target,type,fileName,once,filter,sx,sy) {
 			var containerNode = registerNode(container);
 			var targetNode = registerNode(target);
 			type = type || "image/png";
 			fileName = fileName === undefined ? "file."+(type.replace(/^.*\//,"")) : fileName+"."+(type.replace(/^.*\//,""));
 			once = once ? true : false;
 			filter = filter ? filter : "none";
+			sx = sx === undefined ? 1 : (parseFloat(sx) || 1);
+			sy = sy === undefined ? 1 : (parseFloat(sy) || 1);
 			targetNode.addEventListener("click",function svgToPixelsListener(){
 				try {
 					invokeClick();
+					_this_.clr();
 				} catch (err) {
 					console.log(err.message);
 				} finally {
@@ -17,22 +21,23 @@
 				}
 			});
 			function invokeClick() {
+				var dims = getDims(containerNode);
 				var cloneSVG = containerNode.cloneNode(true);
-				cloneSVG.style.filter = filter;
+				_this_.sel(cloneSVG).set("width",dims.width).set("height",dims.height).rm("viewBox").rm("style").styl("filter",filter);
 				var canvas = document.createElement("canvas");
+				_this_.sel(canvas).set("width",dims.width*sx).set("height",dims.height*sy);
 				var context = canvas.getContext("2d");
+				context.imageSmoothingEnabled = false;
 				var aTag = document.createElement("a");
 				var serialized = new XMLSerializer().serializeToString(cloneSVG);
-				var src = "data:image/svg+xml;base64,"+window.btoa(serialized);
+				var src = "btoa" in window ? "data:image/svg+xml;base64,"+window.btoa(serialized) : "data:image/svg+xml;charset=utf8,"+window.encodeURIComponent(serialized);
 				var img = document.createElement("img");
 				img.crossOrigin = "Anonymous";
 				img.onload = function(){
 					try {
-						context.drawImage(img,0,0);
+						context.drawImage(img,0,0,dims.width,dims.height,0,0,dims.width*sx,dims.height*sy);
 						var url = canvas.toDataURL(type,1.0);
-						aTag.style.display = "none";
-						aTag.setAttribute("href",url);
-						aTag.setAttribute("download",fileName);
+						_this_.sel(aTag).styl("display","none").set("href",url).set("download",fileName);
 						targetNode.appendChild(aTag);
 						aTag.addEventListener("click",generatorClick(aTag));
 						fire(aTag);
@@ -65,6 +70,38 @@
 					setTimeout(function(){window.URL.revokeObjectURL(url);targetNode.removeChild(node)},1000);
 				};
 			}
+			function getDims (node) {
+				if ("width" in node.attributes) {
+					var width = parseFloat(node.getAttribute("width"));
+					var height = parseFloat(node.getAttribute("height")) || width;
+					return {width:width,height:height};
+				} else if("viewBox" in node.attributes) {
+					var dims = node.getAttribute("viewBox").split(/\s*[,]{1}\s*|\s+/gi);
+					return {width:dims[2]-dims[0],height:dims[3]-dims[1]};
+				}
+			}
+			return this;
+		}
+		this.active = undefined;
+		this.clr = function(){this.active = undefined;}
+		this.set = function(attr,value) {
+			this.active.setAttribute(attr,value);
+			return this;
+		}
+		this.rm = function(attr) {
+			this.active.removeAttribute(attr);
+			return this;
+		}
+		this.pro = function(property,value) {
+			this.active[property] = value;
+			return this;
+		}
+		this.styl = function(property,value) {
+			this.active.style[property] = value;
+			return this;
+		}
+		this.sel = function (node) {
+			this.active = node;
 			return this;
 		}
 	}
