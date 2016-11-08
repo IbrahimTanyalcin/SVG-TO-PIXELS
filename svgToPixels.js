@@ -1,7 +1,7 @@
 !function () {
 	function svgToPixels() {
 		var _this_ = this;
-		this.hook = function(container,target,type,fileName,once,filter,sx,sy) {
+		this.hook = function(container,target,type,fileName,once,filter,sx,sy,dx,dy) {
 			var containerNode = registerNode(container);
 			var targetNode = registerNode(target);
 			type = type || "image/png";
@@ -10,6 +10,8 @@
 			filter = filter ? filter : "none";
 			sx = sx === undefined ? 1 : (parseFloat(sx) || 1);
 			sy = sy === undefined ? 1 : (parseFloat(sy) || 1);
+			dx = dx === undefined ? 1 : (parseFloat(dx) || 1);
+			dy = dy === undefined ? 1 : (parseFloat(dy) || 1);
 			targetNode.addEventListener("click",function svgToPixelsListener(){
 				try {
 					invokeClick();
@@ -23,7 +25,7 @@
 			function invokeClick() {
 				var dims = getDims(containerNode);
 				var cloneSVG = containerNode.cloneNode(true);
-				_this_.sel(cloneSVG).set("width",dims.width).set("height",dims.height).rm("viewBox").rm("style").styl("filter",filter);
+				_this_.sel(cloneSVG).set("width",dims.width).set("height",dims.height).set("viewBox",[dims.width*(1-dx)/2,dims.height*(1-dy)/2,dims.width*dx,dims.height*dy].join(" ")).rm("style").styl("filter",filter);
 				var canvas = document.createElement("canvas");
 				_this_.sel(canvas).set("width",dims.width*sx).set("height",dims.height*sy);
 				var context = canvas.getContext("2d");

@@ -50,7 +50,7 @@ method will invoke a security error in IE. However, this seems to be a verified 
 &nbsp;&nbsp;&nbsp;&nbsp;Assume that we want to click on the *controller* and download a corresponding file in "png" format:
 
 <pre>
-svgToPixels.hook(<i>container,target[,type[,fileName[,once[,filter[,sx[,sy]]]]]]</i>)
+svgToPixels.hook(<i>container,target[,type[,fileName[,once[,filter[,sx[,sy,[dx,[dy]]]]]]]]</i>)
 </pre>
 
 * _container_ = This is your root SVG element. It can either be a node, or an id string as in "myId" or an id string with *#* as in "#myId".
@@ -65,6 +65,8 @@ where _type_ is the previously provided/default mime type.
 * _filter_ = Specify a valid *css filter*. The chosen filter will __not__ be applied on the original SVG. Set to *false* by default. (*Important:If you are an IE, the fallback SVG only method does __not__ allow usage of css filters as the only valid filters in SVGSVGElement are the ones declared in SVG namespace.*)
 * _sx_ = X axis scale, defaults to 1.
 * _sy_ = Y axis scale, defaults to 1.
+* _dx_ = Set to 1 by default. If you want to snapshot a larger portion of an SVG (normally not necessary but there might be overflow elements in certain cases) set it to >1. Conversely, if you want a take smaller portion set it to <1. The center of the selected area is always the same with the center of parent SVG. In other words, the snapshot is always aligned middle.
+* _dy_ = Similar to dx, but controls y axis portion and centering.
 	
 &nbsp;&nbsp;&nbsp;&nbsp;If you want to hook several listeners on different elements at once you can use:
 	
