@@ -4,7 +4,7 @@
 image related [data mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
 
 ##Compatibility
-&nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?, force open base64 serialzed svg string)*
+&nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?, force open base64 serialized svg string)*
 
 &nbsp;&nbsp;&nbsp;&nbsp;Currently tested with Chrome and Firefox. A fallback mechanism exists in IE >10 which displays an alert and subsequently downloads an SVG file instead.
 
