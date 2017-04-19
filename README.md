@@ -4,7 +4,7 @@
 image related [data mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
 
 ##Compatibility
-&nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?)*
+&nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?, force open base64 serialzed svg string)*
 
 &nbsp;&nbsp;&nbsp;&nbsp;Currently tested with Chrome and Firefox. A fallback mechanism exists in IE >10 which displays an alert and subsequently downloads an SVG file instead.
 
@@ -18,7 +18,8 @@ method will invoke a security error in IE. However, this seems to be a verified 
 
 &nbsp;&nbsp;&nbsp;&nbsp;For Safari, the *a.download* property and/or _attribute_ does not exit, therefore the output is displayed in a *new window*.
 
-&nbsp;&nbsp;&nbsp;&nbsp;For Safari, check that your pop-up blockers are __disabled__.
+&nbsp;&nbsp;&nbsp;&nbsp;For Safari, check that your pop-up blockers are __disabled__. Safari still requires the png to be generated at the server side, making a round trip. For this reason there is a new force parameter
+which forces the browser to display the base64 svg string to be opened in a new window. You can then export this to PDF using iBooks in iOS.
 
 ##Dependencies
 &nbsp;&nbsp;&nbsp;&nbsp;None.
@@ -50,7 +51,7 @@ method will invoke a security error in IE. However, this seems to be a verified 
 &nbsp;&nbsp;&nbsp;&nbsp;Assume that we want to click on the *controller* and download a corresponding file in "png" format:
 
 <pre>
-svgToPixels.hook(<i>container,target[,type[,fileName[,once[,filter[,sx[,sy,[dx,[dy]]]]]]]]</i>)
+svgToPixels.hook(<i>container,target[,type[,fileName[,once[,filter[,sx[,sy[,dx[,dy[,force]]]]]]]]]</i>)
 </pre>
 
 * _container_ = This is your root SVG element. It can either be a node, or an id string as in "myId" or an id string with *#* as in "#myId".
@@ -67,6 +68,7 @@ where _type_ is the previously provided/default mime type.
 * _sy_ = Y axis scale, defaults to 1.
 * _dx_ = Set to 1 by default. If you want to snapshot a larger portion of an SVG (normally not necessary but there might be overflow elements in certain cases) set it to >1. Conversely, if you want a take smaller portion set it to <1. The center of the selected area is always the same with the center of parent SVG. In other words, the snapshot is always aligned middle.
 * _dy_ = Similar to dx, but controls y axis portion and centering.
+* _force_ = Forces the browser to open base64 string of the svg in new window regardless of whether the png generation was successfull.
 	
 &nbsp;&nbsp;&nbsp;&nbsp;If you want to hook several listeners on different elements at once you can use:
 	
@@ -95,6 +97,8 @@ svgToPixels.hook(...).hook(...).hook(...)..
 <i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,"invert(100%)");</i>
 
 <i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false,10,10);</i> //about ~1 mb high resolution image.
+
+<i>svgToPixels.hook(svgNode,divNode,"image/png","someFileName",false,false,10,10,undefined,undefined,true);</i> //the last argument forces the browser to display the base64 svg string in separate window. 
 </pre>
 
 

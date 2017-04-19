@@ -1,7 +1,7 @@
 !function () {
 	function svgToPixels() {
 		var _this_ = this;
-		this.hook = function(container,target,type,fileName,once,filter,sx,sy,dx,dy) {
+		this.hook = function(container,target,type,fileName,once,filter,sx,sy,dx,dy,force) {
 			var containerNode = registerNode(container);
 			var targetNode = registerNode(target);
 			type = type || "image/png";
@@ -33,6 +33,7 @@
 				var aTag = document.createElement("a");
 				var serialized = new XMLSerializer().serializeToString(cloneSVG);
 				var src = "btoa" in window ? "data:image/svg+xml;base64,"+window.btoa(serialized) : "data:image/svg+xml;charset=utf8,"+window.encodeURIComponent(serialized);
+				force ? window.open(src,"_blank") : void(0);
 				var img = document.createElement("img");
 				img.crossOrigin = "Anonymous";
 				img.onload = function(){
