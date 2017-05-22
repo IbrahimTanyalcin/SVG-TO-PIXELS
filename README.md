@@ -1,9 +1,9 @@
 
-#Aim
+# Aim
 &nbsp;&nbsp;&nbsp;&nbsp;svgToPixels.js is an attempt to provide a cross browser js solution to download dynamically generated SVGs as any of the
 image related [data mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
 
-##Compatibility
+## Compatibility
 &nbsp;&nbsp;&nbsp;&nbsp;*Chrome, Firefox, IE(>9;svg only), Safari(?, force open base64 serialized svg string)*
 
 &nbsp;&nbsp;&nbsp;&nbsp;Currently tested with Chrome and Firefox. A fallback mechanism exists in IE >10 which displays an alert and subsequently downloads an SVG file instead.
@@ -21,16 +21,16 @@ method will invoke a security error in IE. However, this seems to be a verified 
 &nbsp;&nbsp;&nbsp;&nbsp;For Safari, check that your pop-up blockers are __disabled__. Safari still requires the png to be generated at the server side, making a round trip. For this reason there is a new force parameter
 which forces the browser to display the base64 svg string to be opened in a new window. You can then export this to PDF using iBooks in iOS.
 
-##Dependencies
+## Dependencies
 &nbsp;&nbsp;&nbsp;&nbsp;None.
 
-##Mechanism
+## Mechanism
 
 &nbsp;&nbsp;&nbsp;&nbsp;The script assumes that either a viewBox or a width&height attributes are explicitly set in the parent SVG. If a height does not exist, it is assumed to be the same as width.
 
-##Usage
+## Usage
 
-###*Inclusion*
+### *Inclusion*
 &nbsp;&nbsp;&nbsp;&nbsp;Include the svgToPixels.js file within the <head>:
 
 ```
@@ -42,7 +42,7 @@ which forces the browser to display the base64 svg string to be opened in a new 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Upon inclusion an svgToPixels global variable is exported.
 	
-###*__How to use__*
+### *__How to use__*
 
 &nbsp;&nbsp;&nbsp;&nbsp;For the below examples you can refer to a minimal example generated [__here__](example/svgToPng.html).
 
@@ -78,7 +78,7 @@ svgToPixels.hook(...).hook(...).hook(...)..
 
 &nbsp;&nbsp;&nbsp;&nbsp;Although default scales are set to 1, this might result in a low resolution image. I recommend settign *sx,sy* to >2.
 
-####__Examples__:
+#### __Examples__:
 	
 
 <pre>
@@ -102,10 +102,10 @@ svgToPixels.hook(...).hook(...).hook(...)..
 </pre>
 
 
-##Lisence
+## Lisence
 &nbsp;&nbsp;&nbsp;&nbsp;Lisenced under [*ATTRIBUTION ASSURANCE LICENSE*](./LISENCE.md)
 	
-##Support
+## Support
 &nbsp;&nbsp;&nbsp;&nbsp;For any related questions drop an email at:
 * _ibrahim.tanyalcin@i-pv.org_
 	
